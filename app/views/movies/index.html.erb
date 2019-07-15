@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+<br>
+<h2>Favoritos</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+    <%if movie.favorite %>
+      <tr>
+        <td><%= movie.name %></td>
+        <td><%= movie.year %></td>
+        <td><%= link_to 'Show', movie %></td>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<h2>Peliculas en general</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+    <%if !movie.favorite %>
+      <tr>
+        <td><%= movie.name %></td>
+        <td><%= movie.year %></td>
+        <td><%= link_to 'Show', movie %></td>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>
+
